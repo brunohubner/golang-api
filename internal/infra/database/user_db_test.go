@@ -18,7 +18,7 @@ var (
 )
 
 func TestCreateUser(t *testing.T) {
-	db, err := gorm.Open(sqlite.Open("file::memory:"), &gorm.Config{})
+	db, err := gorm.Open(sqlite.Open(":memory:"), &gorm.Config{})
 
 	if err != nil {
 		t.Error(err)
@@ -33,7 +33,9 @@ func TestCreateUser(t *testing.T) {
 	assert.Nil(t, err)
 
 	userFound := entity.User{}
-	db.First(&userFound, user.ID)
+	err = db.First(&userFound, "id = ?", user.ID).Error
+
+	assert.Nil(t, err)
 
 	assert.Equal(t, user.ID, userFound.ID)
 	assert.Equal(t, user.Name, userFound.Name)
