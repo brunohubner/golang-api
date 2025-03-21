@@ -12,3 +12,7 @@ func ParseID(id string) (ID, error) {
 	parsedID, err := uuid.Parse(id)
 	return ID(parsedID), err
 }
+
+func (id ID) String() string {
+	return uuid.UUID(id).String()
+}
