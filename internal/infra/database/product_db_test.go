@@ -58,3 +58,18 @@ func TestFindAllProducts(t *testing.T) {
 	assert.Equal(t, "Product 11", products[0].Name)
 	assert.Equal(t, "Product 20", products[9].Name)
 }
+
+func TestFindProductById(t *testing.T) {
+	productDB := makeInMemoryProductDB(t)
+
+	p, err := entity.NewProduct("Product 1", 10.5)
+	assert.Nil(t, err)
+	err = productDB.Create(p)
+	assert.Nil(t, err)
+
+	pFound, err := productDB.FindById(p.ID)
+	assert.Nil(t, err)
+	assert.Equal(t, p.ID, pFound.ID)
+	assert.Equal(t, p.Name, pFound.Name)
+	assert.Equal(t, p.Price, pFound.Price)
+}
