@@ -26,9 +26,9 @@ func (p *Product) FindAll(page, limit int, sort string) ([]entity.Product, error
 	}
 
 	if limit != 0 && page != 0 {
-		err = p.DB.Offset((page - 1) * limit).Limit(limit).Order("created_at" + sort).Find(&products).Error
+		err = p.DB.Offset((page - 1) * limit).Limit(limit).Order("created_at " + sort).Find(&products).Error
 	} else {
-		err = p.DB.Order("created_at" + sort).Find(&products).Error
+		err = p.DB.Order("created_at " + sort).Find(&products).Error
 	}
 
 	return products, err
@@ -41,7 +41,7 @@ func (p *Product) FindById(id string) (*entity.Product, error) {
 }
 
 func (p *Product) Update(product *entity.Product) error {
-	product, err := p.FindById(product.ID.String())
+	product, err := p.FindById(product.ID)
 	if err != nil {
 		return err
 	}
