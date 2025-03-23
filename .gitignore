@@ -28,3 +28,5 @@ go.work.sum
 
 !pkg
 !.tool-versions
+
+sqlite.test.db
