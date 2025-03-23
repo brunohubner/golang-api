@@ -73,3 +73,40 @@ func TestFindProductById(t *testing.T) {
 	assert.Equal(t, p.Name, pFound.Name)
 	assert.Equal(t, p.Price, pFound.Price)
 }
+
+func TestUpdateProduct(t *testing.T) {
+	productDB := makeInMemoryProductDB(t)
+
+	p, err := entity.NewProduct("Product 1", 10.5)
+	assert.Nil(t, err)
+	err = productDB.Create(p)
+	assert.Nil(t, err)
+
+	p.Name = "Product 2"
+	p.Price = 20.5
+	err = productDB.Update(p)
+	assert.Nil(t, err)
+
+	pFound, err := productDB.FindById(p.ID)
+	assert.Nil(t, err)
+	assert.Equal(t, p.ID, pFound.ID)
+	assert.Equal(t, p.Name, pFound.Name)
+	assert.Equal(t, p.Price, pFound.Price)
+}
+
+func TestDeleteProduct(t *testing.T) {
+	productDB := makeInMemoryProductDB(t)
+
+	p, err := entity.NewProduct("Product 1", 10.5)
+	assert.Nil(t, err)
+	err = productDB.Create(p)
+	assert.Nil(t, err)
+
+	err = productDB.Delete(p.ID)
+	assert.Nil(t, err)
+
+	pFound, err := productDB.FindById(p.ID)
+
+	assert.NotNil(t, err)
+	assert.Equal(t, entity.Product{}, *pFound)
+}
