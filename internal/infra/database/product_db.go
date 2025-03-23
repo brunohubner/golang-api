@@ -19,7 +19,18 @@ func (p *Product) Create(product *entity.Product) error {
 
 func (p *Product) FindAll(page, limit int, sort string) ([]entity.Product, error) {
 	var products []entity.Product
-	err := p.DB.Offset((page - 1) * limit).Limit(limit).Order(sort).Find(&products).Error
+	var err error
+
+	if sort != "" && sort != "asc" && sort != "desc" {
+		sort = "asc"
+	}
+
+	if limit != 0 && page != 0 {
+		err = p.DB.Offset((page - 1) * limit).Limit(limit).Order("created_at" + sort).Find(&products).Error
+	} else {
+		err = p.DB.Order("created_at" + sort).Find(&products).Error
+	}
+
 	return products, err
 }
 
