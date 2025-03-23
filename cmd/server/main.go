@@ -7,8 +7,8 @@ import (
 	"github.com/brunohubner/golang-api/internal/entity"
 	"github.com/brunohubner/golang-api/internal/infra/database"
 	"github.com/brunohubner/golang-api/internal/infra/webserver/handlers"
-	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	"github.com/go-chi/chi/v5"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
