@@ -7,6 +7,8 @@ import (
 	"github.com/brunohubner/golang-api/internal/entity"
 	"github.com/brunohubner/golang-api/internal/infra/database"
 	"github.com/brunohubner/golang-api/internal/infra/webserver/handlers"
+	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/middleware"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -27,7 +29,14 @@ func main() {
 	productDB := database.NewProduct(db)
 	productHandler := handlers.NeProductHandler(productDB)
 
-	http.HandleFunc("/api/v1/products", productHandler.CreateProduct)
+	r := chi.NewRouter()
+	r.Use(middleware.Logger)
 
-	http.ListenAndServe(":8001", nil)
+	prefix := "/api/v1"
+
+	r.Route(prefix, func(r chi.Router) {
+		r.Post("/products", productHandler.CreateProduct)
+	})
+
+	http.ListenAndServe(":8001", r)
 }
