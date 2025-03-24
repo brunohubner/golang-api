@@ -36,6 +36,7 @@ func main() {
 
 	r.Route(prefix, func(r chi.Router) {
 		r.Post("/products", productHandler.CreateProduct)
+		r.Get("/products/{id}", productHandler.GetProduct)
 	})
 
 	http.ListenAndServe(":8001", r)

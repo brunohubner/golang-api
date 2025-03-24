@@ -16,3 +16,8 @@ func ParseID(id string) (ID, error) {
 func (id ID) String() string {
 	return uuid.UUID(id).String()
 }
+
+func IsUUID(id string) bool {
+	_, err := uuid.Parse(id)
+	return err == nil
+}
