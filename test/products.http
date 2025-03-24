@@ -10,3 +10,13 @@ Content-Type: application/json
 
 GET http://localhost:8001/api/v1/products/6b0ab335-19a1-417a-a6b6-bce246fb4e01 HTTP/1.1
 Content-Type: application/json
+
+###
+
+PUT http://localhost:8001/api/v1/products/6b0ab335-19a1-417a-a6b6-bce246fb4e01 HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Product 1 - Alterado",
+  "price": 197.98
+}
