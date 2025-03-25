@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"net/http"
+	"strconv"
 
 	"github.com/brunohubner/golang-api/internal/dto"
 	"github.com/brunohubner/golang-api/internal/entity"
@@ -107,4 +108,30 @@ func (h *ProductHandler) DeleteProduct(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
+}
+
+func (h *ProductHandler) FindManyProducts(w http.ResponseWriter, r *http.Request) {
+	pageString := r.URL.Query().Get("page")
+	limitString := r.URL.Query().Get("limit")
+	sort := r.URL.Query().Get("sort")
+
+	page, err := strconv.Atoi(pageString)
+	if err != nil {
+		page = 1
+	}
+
+	limit, err := strconv.Atoi(limitString)
+	if err != nil {
+		limit = 10
+	}
+
+	products, err := h.ProductDB.FindAll(page, limit, sort)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(products)
 }

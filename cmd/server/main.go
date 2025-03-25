@@ -36,6 +36,7 @@ func main() {
 
 	r.Route(prefix, func(r chi.Router) {
 		r.Post("/products", productHandler.CreateProduct)
+		r.Get("/products", productHandler.FindManyProducts)
 		r.Get("/products/{id}", productHandler.GetProduct)
 		r.Put("/products/{id}", productHandler.UpdateProduct)
 		r.Delete("/products/{id}", productHandler.DeleteProduct)
