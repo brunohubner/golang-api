@@ -15,6 +15,7 @@ Content-Type: application/json
 
 GET http://localhost:8001/api/v1/products?page=1&limit=10&sort=asc HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDI4Njc0NzIsInN1YiI6ImZmMDhkODIwLTcyZjctNDIyYi1hNmQxLTc5NTRhZDkyOWMyYiJ9.WATvp8BFYWH7lpUqazVuRbkYs9IPxqLj8QWaCDSh6ik
 
 ###
 

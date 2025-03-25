@@ -9,6 +9,7 @@ import (
 	"github.com/brunohubner/golang-api/internal/infra/webserver/handlers"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/jwtauth"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -38,14 +39,21 @@ func main() {
 	prefix := "/api/v1"
 
 	r.Route(prefix, func(r chi.Router) {
-		r.Post("/products", productHandler.CreateProduct)
-		r.Get("/products", productHandler.FindManyProducts)
-		r.Get("/products/{id}", productHandler.GetProduct)
-		r.Put("/products/{id}", productHandler.UpdateProduct)
-		r.Delete("/products/{id}", productHandler.DeleteProduct)
+		r.Route("/products", func(r chi.Router) {
+			r.Use(jwtauth.Verifier(config.TokenAuth))
+			r.Use(jwtauth.Authenticator)
 
-		r.Post("/users", userHandler.CreateUser)
-		r.Post("/users/generate-jwt", userHandler.GetJwt)
+			r.Post("/", productHandler.CreateProduct)
+			r.Get("/", productHandler.FindManyProducts)
+			r.Get("/{id}", productHandler.GetProduct)
+			r.Put("/{id}", productHandler.UpdateProduct)
+			r.Delete("/{id}", productHandler.DeleteProduct)
+		})
+
+		r.Route("/users", func(r chi.Router) {
+			r.Post("/", userHandler.CreateUser)
+			r.Post("/generate-jwt", userHandler.GetJwt)
+		})
 	})
 
 	http.ListenAndServe(":8001", r)
