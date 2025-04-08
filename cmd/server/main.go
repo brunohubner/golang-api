@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/brunohubner/golang-api/configs"
@@ -84,5 +85,5 @@ func main() {
 
 	r.Get("/docs/*", httpSwagger.Handler(httpSwagger.URL("http://localhost:8003/docs/doc.json")))
 
-	http.ListenAndServe(":8001", r)
+	http.ListenAndServe(fmt.Sprintf(":%s", config.WebServerPort), r)
 }
