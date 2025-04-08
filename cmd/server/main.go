@@ -12,8 +12,33 @@ import (
 	"github.com/go-chi/jwtauth"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
+
+	_ "github.com/brunohubner/golang-api/docs"
+	httpSwagger "github.com/swaggo/http-swagger"
 )
 
+// @title           Bruno Hubner Golang API
+// @version         1.0
+// @description     lorem impsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+// @termsOfService  http://swagger.io/terms
+
+// @contact.name   Bruno Hubner
+// @contact.url    https://brunohubner.com
+// @contact.email  brunohubnerdev@gmail.com
+
+// @license.name  Apache 2.0
+// @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host      localhost:8003
+// @BasePath  /
+
+// @securityDefinitions.apiKey ApiKeyAuth
+// @in          	header
+// @name        	Authorization
+// @description  	Authorization header with JWT Bearer token
+
+// @externalDocs.description  OpenAPI
+// @externalDocs.url          https://swagger.io/resources/open-api/
 func main() {
 	config, err := configs.LoadConfig("../")
 	if err != nil {
@@ -56,6 +81,8 @@ func main() {
 			r.Post("/generate-jwt", userHandler.GetJwt)
 		})
 	})
+
+	r.Get("/docs/*", httpSwagger.Handler(httpSwagger.URL("http://localhost:8003/docs/doc.json")))
 
 	http.ListenAndServe(":8001", r)
 }

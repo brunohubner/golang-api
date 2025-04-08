@@ -1,0 +1,26 @@
+basePath: /
+externalDocs:
+  description: OpenAPI
+  url: https://swagger.io/resources/open-api/
+host: localhost:8003
+info:
+  contact:
+    email: brunohubnerdev@gmail.com
+    name: Bruno Hubner
+    url: https://brunohubner.com
+  description: lorem impsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms
+  title: Bruno Hubner Golang API
+  version: "1.0"
+paths: {}
+securityDefinitions:
+  ApiKeyAuth:
+    description: Authorization header with JWT Bearer token
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
