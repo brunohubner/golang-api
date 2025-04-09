@@ -233,7 +233,7 @@ paths:
       - ApiKeyAuth: []
       summary: Update a product
       tags:
-      - products
+      - productsa
   /api/v1/users:
     post:
       consumes:
