@@ -20,7 +20,7 @@ import (
 	httpSwagger "github.com/swaggo/http-swagger"
 )
 
-// @title           Bruno Hubner Golang API
+// @title           Bruno Hubner co-chi API
 // @version         1.0
 // @description     lorem impsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 // @termsOfService  http://swagger.io/terms
