@@ -5,10 +5,11 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/brunohubner/golang-api/internal/dto"
-	"github.com/brunohubner/golang-api/internal/entity"
-	"github.com/brunohubner/golang-api/internal/infra/database"
-	utils "github.com/brunohubner/golang-api/pkg/entity"
+	"app/internal/dto"
+	"app/internal/entity"
+	"app/internal/infra/database"
+	utils "app/pkg/entity"
+
 	"github.com/go-chi/chi/v5"
 )
 

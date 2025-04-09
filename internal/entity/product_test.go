@@ -3,7 +3,8 @@ package entity_test
 import (
 	"testing"
 
-	"github.com/brunohubner/golang-api/internal/entity"
+	"app/internal/entity"
+
 	"github.com/stretchr/testify/assert"
 )
 

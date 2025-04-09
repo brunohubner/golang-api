@@ -5,9 +5,10 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/brunohubner/golang-api/internal/dto"
-	"github.com/brunohubner/golang-api/internal/entity"
-	"github.com/brunohubner/golang-api/internal/infra/database"
+	"app/internal/dto"
+	"app/internal/entity"
+	"app/internal/infra/database"
+
 	"github.com/go-chi/jwtauth"
 )
 

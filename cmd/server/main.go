@@ -4,17 +4,19 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/brunohubner/golang-api/configs"
-	"github.com/brunohubner/golang-api/internal/entity"
-	"github.com/brunohubner/golang-api/internal/infra/database"
-	"github.com/brunohubner/golang-api/internal/infra/webserver/handlers"
+	"app/configs"
+	"app/internal/entity"
+	"app/internal/infra/database"
+	"app/internal/infra/webserver/handlers"
+
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/jwtauth"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 
-	_ "github.com/brunohubner/golang-api/docs"
+	_ "app/docs"
+
 	httpSwagger "github.com/swaggo/http-swagger"
 )
 

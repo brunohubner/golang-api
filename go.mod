@@ -1,4 +1,4 @@
-module github.com/brunohubner/golang-api
+module app
 
 go 1.24.0
 

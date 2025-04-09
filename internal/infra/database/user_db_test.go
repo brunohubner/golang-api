@@ -3,8 +3,9 @@ package database_test
 import (
 	"testing"
 
-	"github.com/brunohubner/golang-api/internal/entity"
-	"github.com/brunohubner/golang-api/internal/infra/database"
+	"app/internal/entity"
+	"app/internal/infra/database"
+
 	"github.com/stretchr/testify/assert"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"

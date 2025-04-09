@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/brunohubner/golang-api/pkg/entity"
+	"app/pkg/entity"
 )
 
 var (
