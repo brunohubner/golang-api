@@ -101,7 +101,7 @@ func (h *ProductHandler) GetProduct(w http.ResponseWriter, r *http.Request) {
 // UpdateProduct godoc
 // @Summary      Update a product
 // @Description  Update a product
-// @Tags         products
+// @Tags         productsa
 // @Accept       json
 // @Produce      json
 // @Param        id        	path      string                  true  "product ID" Format(uuid)
