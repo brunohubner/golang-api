@@ -190,7 +190,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "productsa"
+                    "products"
                 ],
                 "summary": "Update a product",
                 "parameters": [
